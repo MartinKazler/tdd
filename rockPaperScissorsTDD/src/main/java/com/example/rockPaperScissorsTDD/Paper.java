@@ -1,11 +1,18 @@
 package com.example.rockPaperScissorsTDD;
 
-public class Paper {
-    public boolean beats(Scissors scissors) {
-        return false;
-    }
+ public class Paper implements Gestures {
+        @Override
+        public boolean beats(Scissors scissors) {
+            return false;
+        }
 
-    public boolean beats(Rock rock) {
-        return true;
+        @Override
+        public boolean beats(Rock rock) {
+            return true;
+        }
+
+        @Override
+        public boolean beats(Paper paper) {
+            return false;
+        }
     }
-}

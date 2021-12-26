@@ -1,8 +1,8 @@
 package com.example.rockPaperScissorsTDD;
+public class Paper implements Gestures {
 
- public class Paper implements Gestures {
-        @Override
-        public boolean beats(Scissors scissors) {
+    @Override
+        public boolean beats(Paper paper) {
             return false;
         }
 
@@ -12,7 +12,13 @@ package com.example.rockPaperScissorsTDD;
         }
 
         @Override
-        public boolean beats(Paper paper) {
-            return false;
+            public boolean beats(Scissors scissors) {
+                return false;
+            }
+
+            @Override
+            public boolean beats(Gestures gestures) {
+                return gestures.beats(this);
+            }
+
         }
-    }

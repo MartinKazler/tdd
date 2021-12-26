@@ -1,15 +1,9 @@
 package com.example.rockPaperScissorsTDD;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
-
 public class MockTest {
-
     Rock rock;
     Paper paper;
     Scissors scissors;
@@ -17,7 +11,8 @@ public class MockTest {
     Player cpu;
     Game game;
     Gestures gestures;
-
+    GesturesFactory gesturesFactory;
+    GameCounter counter;
     @BeforeEach
     void setUp() {
         rock = mock(Rock.class);
@@ -25,21 +20,40 @@ public class MockTest {
         scissors = mock(Scissors.class);
         player = new Player("player");
         cpu = new Player("cpu");
-        game = mock(Game.class);
+        game = new Game();
         gestures = mock(Gestures.class);
+        gesturesFactory = mock(GesturesFactory.class);
+        counter = new GameCounter();
     }
-
     @Test
     void name() {
+    }
+    @Test
+    void test_call_on_real_method() {
 
-        doCallRealMethod().when(game).gameLogic(player,cpu,"PAPER");
 
     }
 
     @Test
-    void test() {
-        when(eq(rock.beats(paper))).thenReturn(false);
+    void test_rock_lose_against_paper() {
+        when(rock.beats(paper)).thenReturn(false);
+        assertFalse(rock.beats(paper));
+    }
+    @Test
+    void test_rock_wins_against_scissors_() {
+        when(rock.beats(scissors)).thenReturn(true);
+        assertTrue(rock.beats(scissors));
+    }
+    @Test
+    void test_rock_draw_against_rock() {
+        when(rock.beats(rock)).thenReturn(false);
+        assertFalse(rock.beats(rock));
+    }
 
-
+    @Test
+    void test_Game_gameLogic_hardcoded_player_victory() {
+        player = new Player("spelaren");
+        System.out.println("You have chosen the name " + player.getName());
+        game.gameLogic(player,cpu,"ROCK", "SCISSORS");
     }
 }

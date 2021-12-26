@@ -63,13 +63,4 @@ public class RockPaperScissorsTest {
         assertFalse(scissors.beats(rock));
     }
 
-    @Test
-    void test_player_wins_3_to_0_vs_cpu() {
-        assertTrue(scissors.beats(paper));
-
-        assertTrue(scissors.beats(paper));
-
-        assertTrue(scissors.beats(paper));
-
-    }
 }

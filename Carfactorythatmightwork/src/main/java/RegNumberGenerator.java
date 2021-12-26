@@ -8,13 +8,9 @@ public class RegNumberGenerator {
 
         StringBuilder sb = new StringBuilder(n);
 
-        for (int i = 0; i < n; i++) {
+        int index = (int) (AlphaNumericString.length() * Math.random());
+        sb.append(AlphaNumericString.charAt(index));
 
-            int index
-                    = (int)(AlphaNumericString.length() * Math.random());
-
-            sb.append(AlphaNumericString.charAt(index));
-        }
 
         return sb.toString();
     }

@@ -1,6 +1,9 @@
 package com.example.rockPaperScissorsTDD;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 public class MockTest {
@@ -28,12 +31,19 @@ public class MockTest {
     @Test
     void name() {
     }
-    @Test
-    void test_call_on_real_method() {
-
-
-    }
-
+    /* @Test
+     void test_call_on_real_method() {
+         //Given
+        // doCallRealMethod().when(game).gameLogic(player, cpu, "PAPER", "ROCK");
+         //When
+         // game.gameLogic(player, cpu, "PAPER", "ROCK");
+         //then
+         // verify
+        // verify(game, times(1)).gameLogic(player, cpu, "PAPER", "ROCK");
+     }
+         //verify
+         verify(game, times(1)).gameLogic(player, cpu, "PAPER", "ROCK");
+     }*/
     @Test
     void test_rock_lose_against_paper() {
         when(rock.beats(paper)).thenReturn(false);
@@ -55,5 +65,22 @@ public class MockTest {
         player = new Player("spelaren");
         System.out.println("You have chosen the name " + player.getName());
         game.gameLogic(player,cpu,"ROCK", "SCISSORS");
+    }
+
+    @Test
+    void test_Game_gameLogic_interactive_player_win_with_choice_rock() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter your name");
+
+
+        String name = scanner.nextLine();
+        player = new Player(name);
+        System.out.println("You have chosen the name " + player.getName());
+
+        String playerChoice = scanner.nextLine().toUpperCase();
+        game.gameLogic(player, cpu, playerChoice, "SCISSORS");
+
+
+
     }
 }

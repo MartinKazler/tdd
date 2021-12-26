@@ -15,7 +15,6 @@ public class Game {
         while (isGameLoop(player, cpu)) {
             String playerChoice = playerScanner.nextLine().toUpperCase();
             String cpuChoice = cpuChoice();
-
             if (!playerChoice.equals("ROCK") && !playerChoice.equals("PAPER") && !playerChoice.equals("SCISSORS")) {
                 System.out.println("Invalid gesture");
             } else {
@@ -23,7 +22,6 @@ public class Game {
             }
         }
     }
-
     private boolean isGameLoop(Player player, Player cpu) {
         System.out.println(player.getName() + " score: " + counter.getPlayerPoints());
         System.out.println(cpu.getName() + " score: " + counter.getComputerPoints());
@@ -42,17 +40,17 @@ public class Game {
         System.out.println("CPU choice is: " + cpuChoice);
         if (playerChoice.equals(cpuChoice)) {
             System.out.println("It's a tie!");
-        } else if (!player.throwGesture(playerChoice).beats(cpu.throwGesture(cpuChoice))) {
+        } else if (cpu.throwGesture(cpuChoice).isBeatenBy(player.throwGesture(playerChoice))) {
             counter.playerWon();
             System.out.println(player.getName() + " won this round!");
-        } else if (!cpu.throwGesture(cpuChoice).beats(player.throwGesture(playerChoice))) {
+        } else if (player.throwGesture(playerChoice).isBeatenBy(cpu.throwGesture(cpuChoice))) {
             counter.computerWon();
             System.out.println(cpu.getName() + " won this round!");
         } else {
             System.out.println("What did you do? This was NOT supposed to happen");
         }
     }
-    public String cpuChoice() {
+    private String cpuChoice() {
         RandomGenerator randomGenerator = new RandomGenerator();
         int choice = randomGenerator.getRandom();
         switch (choice) {

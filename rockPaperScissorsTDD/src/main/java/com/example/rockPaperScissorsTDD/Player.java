@@ -8,11 +8,10 @@ public class Player {
         this.name = name;
     }
 
-    public Gestures throwGesture(String gestureName){
+    public Gestures throwGesture(String gestureName) {
         GesturesFactory gesturesFactory = new GesturesFactory();
         return gesturesFactory.getGesture(gestureName);
     }
-
 
     public String getName() {
         return name;

@@ -1,12 +1,8 @@
 package com.example.rockPaperScissorsTDD;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-
 import static org.junit.jupiter.api.Assertions.*;
-
 public class RockPaperScissorsTest {
-
     Rock rock;
     Paper paper;
     Scissors scissors;
@@ -18,16 +14,13 @@ public class RockPaperScissorsTest {
         paper = new Paper();
         scissors = new Scissors();
         counter = new GameCounter();
+
     }
-
-
 
     @Test
     void rock_beats_scissors_success() {
         assertTrue(rock.beats(scissors));
-
     }
-
     @Test
     void rock_beats_paper_fail() {
         assertFalse(rock.beats(paper));
@@ -63,4 +56,16 @@ public class RockPaperScissorsTest {
         assertFalse(scissors.beats(rock));
     }
 
+    @Test
+    void test_gestures_isBeatenBy_true() {
+        assertTrue(rock.isBeatenBy(paper));
+        assertTrue(paper.isBeatenBy(scissors));
+        assertTrue(scissors.isBeatenBy(rock));
+    }
+    @Test
+    void test_gestures_isBeatenBy_false() {
+        assertFalse(rock.isBeatenBy(scissors));
+        assertFalse(paper.isBeatenBy(rock));
+        assertFalse(scissors.isBeatenBy(paper));
+    }
 }
